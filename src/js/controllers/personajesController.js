@@ -1,5 +1,9 @@
+import setLocalStorage from '../utils/setLocalStorage'
+
 function personajesController() {
+
     var idCounter = 1
+    var cargarMasButton = document.getElementById('cargarMas')
 
     function getData(urlApi) {
         $.ajax({
@@ -14,16 +18,16 @@ function personajesController() {
                     // FUNCIONES DE TRADUCCION DE STRINGS //
                     ////////////////////////////////////////
 
-                    function translatedNames() {
-                        var translatedName;
+                    function translatedGender() {
+                        var translatedGender;
                         if (element.gender === 'male') {
-                            translatedName = 'Hombre'
+                            translatedGender = 'Hombre'
                         } else if (element.gender === 'female') {
-                            translatedName = 'Mujer'
+                            translatedGender = 'Mujer'
                         } else {
-                            translatedName = 'Sin Género'
+                            translatedGender = 'Sin Género'
                         }
-                        return translatedName
+                        return translatedGender
                     }
 
                     function translatedEyeColors() {
@@ -69,23 +73,30 @@ function personajesController() {
                     ///////////////////////////////////////
 
                     $('#nameList').append(`<tr class="character-row">
-                        <th scope="row"> ${idCounter}
+                        <th scope="row" id="${idCounter}">${idCounter}
                             <td>${element.name}</td>
-                            <td>${translatedNames()}</td>
+                            <td>${translatedGender()}</td>
                             <td>${translatedHeight()} CM</td>
                             <td>${translatedWeight()} KG</td>
                             <td>${translatedEyeColors()}</td>
                             <td>
-                                <button type="button" class="btn btn-success" id="saveLocal">Guardar</button>
+                                <button type="button" class="btn btn-success" id="${idCounter}">Guardar</button>
                             </td>
                         </th>
                     </tr>`);
                     idCounter++
+
                 }
-                if (response.next) {
-                    $("#cargarMas").click(function (e) {
-                        (getData(response.next))
-                    });
+                /////////////////////////////////////////////
+                // SE CARGAN MAS PERSONAJES CON ESTE BOTON //
+                /////////////////////////////////////////////
+
+                cargarMasButton.onclick = function () {
+                    if (response.next) {
+                        getData(response.next)
+                    } else if (response.next == null) {
+                        $(cargarMasButton).attr('disabled', true);
+                    }
                 }
             },
             error: function () {
@@ -93,7 +104,26 @@ function personajesController() {
             }
         });
     }
+
     getData('https://swapi.co/api/people')
-}
+
+
+    ///////////////////////////////////////////
+    // METODO PARA OBTENER DATOS DE LAS ROWS //
+    ///////////////////////////////////////////
+
+
+    $('.table').on('click', '.btn', function () {
+        var row = $(this).closest('tr')
+
+        var name = row.find('td:eq(0)').text()
+        var gender = row.find('td:eq(1)').text()
+        var height = row.find('td:eq(2)').text()
+        var weight = row.find('td:eq(3)').text()
+        var eyeColor = row.find('td:eq(4)').text()
+
+        setLocalStorage('STAPIChar', [{name: name, gender: gender, height: height, weight: weight, eyeColor: eyeColor}])
+    })
+};
 
 export default personajesController

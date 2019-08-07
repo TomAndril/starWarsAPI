@@ -1,5 +1,5 @@
 function homeController() {
-    console.log('home y controlador cargados')
+    console.log('home cargada')
 }
 
 export default homeController 
