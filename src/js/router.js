@@ -2,6 +2,7 @@ import crossroads from 'crossroads'
 import homeController from './controllers/homeControllers'
 import personajesController from './controllers/personajesController'
 import guardadosController from './controllers/guardadosController'
+import contactController from './controllers/contactController'
 
 function router() {
     crossroads.addRoute('', function () {
@@ -11,7 +12,7 @@ function router() {
         $('#root').load('./partials/home.html')
     })
     crossroads.addRoute('#/contact', function () {
-        $('#root').load('./partials/contact.html')
+        $('#root').load('./partials/contact.html', contactController)
     })
     crossroads.addRoute('#/guardados', function () {
         $('#root').load('./partials/guardados.html', guardadosController)

@@ -1,5 +1,7 @@
+import getLocalStorage from '../utils/getLocalStorage'
+
 function guardadosController() {
-    console.log('seccion guardados cargada')
+    getLocalStorage('STAPIChar', '.characters')
 }
 
 export default guardadosController

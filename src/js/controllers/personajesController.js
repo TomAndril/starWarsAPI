@@ -73,8 +73,7 @@ function personajesController() {
                     ///////////////////////////////////////
 
                     $('#nameList').append(`<tr class="character-row">
-                        <th scope="row" id="${idCounter}">${idCounter}
-                            <td>${element.name}</td>
+                        <th scope="row" id="${idCounter}">${idCounter}<td>${element.name}</td>
                             <td>${translatedGender()}</td>
                             <td>${translatedHeight()} CM</td>
                             <td>${translatedWeight()} KG</td>
@@ -108,13 +107,16 @@ function personajesController() {
     getData('https://swapi.co/api/people')
 
 
-    ///////////////////////////////////////////
-    // METODO PARA OBTENER DATOS DE LAS ROWS //
-    ///////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////
+    // METODO PARA OBTENER DATOS DE LAS ROWS Y SUBIR AL LOCAL STORAGE //
+    ////////////////////////////////////////////////////////////////////
 
 
     $('.table').on('click', '.btn', function () {
-        var row = $(this).closest('tr')
+        var row = $(this).closest('tr') 
+        var hashId = row.find('th:eq(0)').text()
+
+        console.log(hashId)
 
         var name = row.find('td:eq(0)').text()
         var gender = row.find('td:eq(1)').text()
@@ -122,7 +124,7 @@ function personajesController() {
         var weight = row.find('td:eq(3)').text()
         var eyeColor = row.find('td:eq(4)').text()
 
-        setLocalStorage('STAPIChar', [{name: name, gender: gender, height: height, weight: weight, eyeColor: eyeColor}])
+        setLocalStorage('STAPIChar', [{name: name, gender: gender, height: height, weight: weight, eyeColor: eyeColor, id: hashId}])
     })
 };
 

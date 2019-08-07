@@ -7,6 +7,17 @@ main {
     font-family: starJedi;
 }
 
+#root {
+  background-image: url('./src/main-background-image.jpg');
+  height: 100vh;
+}
+
+.container-fluid {
+  background-image: url('./src/main-background-image.jpg');
+}
+
+/* Estilos Navbar */
+
 .navbar .navbar-brand {
     font-family: starJedi;
     letter-spacing: 2px;
@@ -17,33 +28,16 @@ main {
     font-family: starJedi;
 }
 
-.main-section {
-    height: 100vh;
-    background-image: url('./src/main-background-image.jpg');
-    background-position: center;
-}
+/* Estilos Main */
 
-.main-description h1 {
-    font-family: starJedi;
-    letter-spacing: 4px;
-    color: rgb(129, 14, 14);
-    font-size: 18vh;
-}
 
-.main-description img {
-    width: 10%;
-}
-
-.characters-section {
-    background-image: url('./src/main-background-image.jpg');
-    background-position: center;
-}
+/* Estilos Seccion Personajes */
 
 .characters-table {
     padding-top: 15px;
 }
 
-.header-lista th {
+.header-tabla-lista th {
     color: #feda4a;
     font-weight: 200;
 }
@@ -51,6 +45,9 @@ main {
 .character-row {
     font-weight: 100;
 }
+
+/* Seccion Guardados */
+
 
 /* Animacion HOME */
 
