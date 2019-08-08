@@ -4,23 +4,21 @@
 
 function nameValidator(input) {
     $(input).blur(function () {
-        if (input.val() === "" ||
-            input.val().indexOf('0') >= 0 ||
-            input.val().indexOf('1') >= 0 ||
-            input.val().indexOf('2') >= 0 ||
-            input.val().indexOf('3') >= 0 ||
-            input.val().indexOf('4') >= 0 ||
-            input.val().indexOf('5') >= 0 ||
-            input.val().indexOf('6') >= 0 ||
-            input.val().indexOf('7') >= 0 ||
-            input.val().indexOf('8') >= 0 ||
-            input.val().indexOf('9') >= 0) {
+        if ($(input).val() === "" ||
+            $(input).val().indexOf('0') >= 0 ||
+            $(input).val().indexOf('1') >= 0 ||
+            $(input).val().indexOf('2') >= 0 ||
+            $(input).val().indexOf('3') >= 0 ||
+            $(input).val().indexOf('4') >= 0 ||
+            $(input).val().indexOf('5') >= 0 ||
+            $(input).val().indexOf('6') >= 0 ||
+            $(input).val().indexOf('7') >= 0 ||
+            $(input).val().indexOf('8') >= 0 ||
+            $(input).val().indexOf('9') >= 0) {
             $(input).addClass("is-invalid");
-            submitButtonValidatorBad()
         } else {
             $(input).removeClass("is-invalid");
             $(input).addClass("is-valid")
-            submitButtonValidatorGood()
         }
     });
 }
@@ -31,36 +29,34 @@ function nameValidator(input) {
 
 function emailValidator(input) {
     $(input).blur(function () {
-        if (input.val() !== "" && input.val().indexOf("@") >= 0 && input.val().indexOf(".") >= 0) {
+        if ($(input) !== "" && $(input).val().indexOf('@') >= 0 && $(input).val().indexOf('.') >= 0) {
             $(input).removeClass("is-invalid");
             $(input).addClass("is-valid");
-            submitButtonValidatorGood()
         } else {
             $(input).addClass("is-invalid");
-            submitButtonValidatorBad()
+            $(input).removeClass("is-valid");
         }
     });
 }
 
-///////////////////////////////
-// VALIDADOR DE BOTON ENVIAR //
-///////////////////////////////
+//////////////////////////////
+// VALIDADOR DE COMENTARIOS //
+//////////////////////////////
 
-function submitButtonValidatorGood() {
-    if ($(firstNameInput).hasClass("is-valid") && $(dniInput).hasClass('is-valid') && $(emailInput).hasClass('is-valid')) {
-        $(submitButton).removeAttr('disabled');
-    }
-}
-
-function submitButtonValidatorBad() {
-    if ($(firstNameInput).hasClass('is-invalid') || $(dniInput).hasClass('is-invalid')) {
-        $(submitButton).attr('disabled', true);
-    }
+function commentValidator(input) {
+    $(input).blur(function () {
+        if ($(input).val() !== '') {
+            $(input).removeClass("is-invalid");
+            $(input).addClass("is-valid");
+        } else {
+            $(input).addClass("is-invalid");
+            $(input).removeClass("is-valid");
+        }
+    });
 }
 
 export {
     nameValidator,
     emailValidator,
-    submitButtonValidatorBad,
-    submitButtonValidatorGood
+    commentValidator
 }

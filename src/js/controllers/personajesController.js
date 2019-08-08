@@ -2,7 +2,7 @@ import setLocalStorage from '../utils/setLocalStorage'
 
 function personajesController() {
 
-    var idCounter = 1
+    var hashId = 1
     var cargarMasButton = document.getElementById('cargarMas')
 
     function getData(urlApi) {
@@ -73,17 +73,17 @@ function personajesController() {
                     ///////////////////////////////////////
 
                     $('#nameList').append(`<tr class="character-row">
-                        <th scope="row" id="${idCounter}">${idCounter}<td>${element.name}</td>
+                        <th scope="row" id="${element.url}">${hashId}<td>${element.name}</td>
                             <td>${translatedGender()}</td>
                             <td>${translatedHeight()} CM</td>
                             <td>${translatedWeight()} KG</td>
                             <td>${translatedEyeColors()}</td>
                             <td>
-                                <button type="button" class="btn btn-success" id="${idCounter}">Guardar</button>
+                                <button type="button" class="btn btn-success" id="${element.url}">Guardar</button>
                             </td>
                         </th>
                     </tr>`);
-                    idCounter++
+                    hashId++
 
                 }
                 /////////////////////////////////////////////
@@ -114,9 +114,7 @@ function personajesController() {
 
     $('.table').on('click', '.btn', function () {
         var row = $(this).closest('tr') 
-        var hashId = row.find('th:eq(0)').text()
-
-        console.log(hashId)
+        var id = response.url
 
         var name = row.find('td:eq(0)').text()
         var gender = row.find('td:eq(1)').text()
@@ -124,7 +122,7 @@ function personajesController() {
         var weight = row.find('td:eq(3)').text()
         var eyeColor = row.find('td:eq(4)').text()
 
-        setLocalStorage('STAPIChar', [{name: name, gender: gender, height: height, weight: weight, eyeColor: eyeColor, id: hashId}])
+        setLocalStorage('STAPIChar', [{name: name, gender: gender, height: height, weight: weight, eyeColor: eyeColor, id: id}])
     })
 };
 
