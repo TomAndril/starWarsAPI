@@ -72,8 +72,8 @@ function personajesController() {
                     // SE CREA UN ROW POR CADA PERSONAJE //
                     ///////////////////////////////////////
 
-                    $('#nameList').append(`<tr class="character-row">
-                        <th scope="row" id="${element.url}">${hashId}<td>${element.name}</td>
+                    $('#nameList').append(`<tr class="character-row" id="${element.url}">
+                        <th scope="row">${hashId}<td>${element.name}</td>
                             <td>${translatedGender()}</td>
                             <td>${translatedHeight()} CM</td>
                             <td>${translatedWeight()} KG</td>
@@ -113,8 +113,8 @@ function personajesController() {
 
 
     $('.table').on('click', '.btn', function () {
-        var row = $(this).closest('tr') 
-        var id = response.url
+        var row = $(this).closest('tr')
+        var elementID =  $(row).attr("id")
 
         var name = row.find('td:eq(0)').text()
         var gender = row.find('td:eq(1)').text()
@@ -122,7 +122,8 @@ function personajesController() {
         var weight = row.find('td:eq(3)').text()
         var eyeColor = row.find('td:eq(4)').text()
 
-        setLocalStorage('STAPIChar', [{name: name, gender: gender, height: height, weight: weight, eyeColor: eyeColor, id: id}])
+        setLocalStorage('STAPIChar', {name: name, gender: gender, height: height, weight: weight, eyeColor: eyeColor, id: elementID})
+        $(row).remove();
     })
 };
 

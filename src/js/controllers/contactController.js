@@ -4,6 +4,8 @@ import {
     commentValidator
 } from '../utils/formValidators'
 
+
+
 function contactController() {
     nameValidator('#nombre')
     emailValidator('#email')
@@ -16,6 +18,37 @@ function contactController() {
             $('#botonEnviar').attr('disabled', true);
         }
     });
+
+    function postData (url, data, cbk) {
+        $.ajax({
+          url: url,
+          method: 'POST',
+          data: data
+        })
+          .done(function (data) {
+            cbk(null, data)
+          })
+          .fail(function (error) {
+            cbk(error)
+          })
+      }
+
+      var sendButton = $('#botonEnviar')
+
+      sendButton.click(function () {
+        var firstName = $('#nombre').val()
+        var email = $('#email').val()
+        var comments = $('#comentarios').val()
+    
+        var data = {
+          firstName: firstName,
+          email: email,
+          comments: comments
+        }
+    
+        postData('./simpleEmail.php', data, function (error, data) {
+        })
+      })
 }
 
 export default contactController

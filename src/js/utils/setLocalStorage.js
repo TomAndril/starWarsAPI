@@ -10,12 +10,10 @@ function setLocalStorage (key, list) {
         parsedData = []
     }
 
-    if (typeof key === 'string' && Array.isArray(list)) {
-
       parsedData.push(list)
       var strList = JSON.stringify(parsedData)
       localStorage.setItem(key, strList)
-    }
+    
   }
 
 export default setLocalStorage

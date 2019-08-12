@@ -2,16 +2,17 @@
 // FUNCION DE OBTENCION DE DATOS DE LOCAL STORAGE //
 ////////////////////////////////////////////////////
 
-export default function getLocalStorage(index, parentNode) {
+function getLocalStorage(index, parentNode) {
+  var hashCounter = 1
   var gettedData = localStorage.getItem(index)
   var parsedData = JSON.parse(gettedData)
   if (parsedData == null) {
     console.log("No hay datos almacenados en localStorage")
   } else {
     for (let i = 0; i < parsedData.length; i++) {
-      var element = parsedData[i][0];
+      var element = parsedData[i];
       $(parentNode).append(`<tr class="character-row">
-                        <th scope="row" id="${element.id}">${element.id}
+                        <th scope="row" id="${element.id}">${hashCounter}
                             <td>${element.name}</td>
                             <td>${element.gender}</td>
                             <td>${element.height}</td>
@@ -22,6 +23,9 @@ export default function getLocalStorage(index, parentNode) {
                             </td>
                         </th>
                     </tr>`);
+                    hashCounter++
     }
   }
 }
+
+export default getLocalStorage

@@ -1,0 +1,5 @@
+hacer el commit normalmente en git y despues:
+
+compilar la app con "npm run build"
+
+git subtree push --prefix 'public/' heroku master
