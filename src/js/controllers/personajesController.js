@@ -84,8 +84,8 @@ function personajesController() {
                         </th>
                     </tr>`);
                     hashId++
-
                 }
+                
                 /////////////////////////////////////////////
                 // SE CARGAN MAS PERSONAJES CON ESTE BOTON //
                 /////////////////////////////////////////////
@@ -105,8 +105,7 @@ function personajesController() {
     }
 
     getData('https://swapi.co/api/people')
-
-
+    
     ////////////////////////////////////////////////////////////////////
     // METODO PARA OBTENER DATOS DE LAS ROWS Y SUBIR AL LOCAL STORAGE //
     ////////////////////////////////////////////////////////////////////
@@ -114,7 +113,7 @@ function personajesController() {
 
     $('.table').on('click', '.btn', function () {
         var row = $(this).closest('tr')
-        var elementID =  $(row).attr("id")
+        var elementID = $(row).attr("id")
 
         var name = row.find('td:eq(0)').text()
         var gender = row.find('td:eq(1)').text()
@@ -122,7 +121,14 @@ function personajesController() {
         var weight = row.find('td:eq(3)').text()
         var eyeColor = row.find('td:eq(4)').text()
 
-        setLocalStorage('STAPIChar', {name: name, gender: gender, height: height, weight: weight, eyeColor: eyeColor, id: elementID})
+        setLocalStorage('STAPIChar', {
+            name: name,
+            gender: gender,
+            height: height,
+            weight: weight,
+            eyeColor: eyeColor,
+            id: elementID
+        })
         $(row).remove();
     })
 };
