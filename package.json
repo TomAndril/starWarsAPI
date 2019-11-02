@@ -11,7 +11,7 @@
   "author": "Tomas Nasjleti",
   "license": "ISC",
   "dependencies": {
-    "bootstrap": "^4.1.2",
+    "bootstrap": "^4.3.1",
     "crossroads": "^0.12.2",
     "jquery": "^3.4.1",
     "popper.js": "^1.14.3"
