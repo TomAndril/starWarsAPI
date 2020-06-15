@@ -104,7 +104,7 @@ function personajesController() {
         });
     }
 
-    getData('https://swapi.co/api/people')
+    getData('https://swapi.dev/api/people')
     
     ////////////////////////////////////////////////////////////////////
     // METODO PARA OBTENER DATOS DE LAS ROWS Y SUBIR AL LOCAL STORAGE //
